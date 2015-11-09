@@ -6,6 +6,8 @@ ActiveAdmin.register Category do
 
   config.sort_order = 'id_asc'
 
+  actions :index, :new, :create, :update, :edit
+
   filter :name
   filter :value
   filter :created_at
@@ -17,9 +19,10 @@ ActiveAdmin.register Category do
     end
     column :value
     # column :rows_count
-    actions name: 'Actions', defaults: false do |category|
+    column 'Update', defaults: false do |category|
       link_to('Update', "/admin/categories/#{category.id}/update_category")
     end
+    actions
   end
 
   member_action :update_category, method: :get do
