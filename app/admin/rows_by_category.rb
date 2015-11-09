@@ -1,5 +1,7 @@
 ActiveAdmin.register Row, as: 'RowsByCategory' do
 
+  actions :index
+
   menu false
 
   config.per_page = 30

@@ -1,5 +1,7 @@
 ActiveAdmin.register Row do
 
+  actions :index
+
   menu priority: 1
 
   config.per_page = 30

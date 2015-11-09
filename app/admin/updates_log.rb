@@ -1,5 +1,7 @@
 ActiveAdmin.register UpdatesLog do
 
+  actions :index
+
   menu priority: 2
 
   config.sort_order = 'created_at_desc'

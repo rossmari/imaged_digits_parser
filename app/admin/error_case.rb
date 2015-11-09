@@ -1,5 +1,7 @@
 ActiveAdmin.register ErrorCase do
 
+  actions :index
+
   config.per_page = 10
 
   filter :category
