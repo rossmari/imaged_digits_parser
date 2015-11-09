@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: rossmari
+
+development:
+  <<: *default
+  database: digits_development
+
+test:
+  <<: *default
+  database: digits_test
+
+production:
+  <<: *default
+  database: digits_production
+  username: rossmari
+  password: <%= ENV['STAR_CITY_PARSER_DATABASE_PASSWORD'] %>
