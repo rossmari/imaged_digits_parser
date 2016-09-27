@@ -1,6 +1,6 @@
 ActiveAdmin.register Category do
 
-  menu priority: 0
+  menu priority: 5
 
   permit_params :name, :value
 

@@ -15,6 +15,7 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'carrierwave'
 gem 'chunky_png'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
