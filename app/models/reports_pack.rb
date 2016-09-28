@@ -5,4 +5,13 @@ class ReportsPack < ActiveRecord::Base
   has_many :chemical_reports
   accepts_nested_attributes_for :chemical_reports
 
+  def separate_reports
+    chemical_reports.each do |report|
+      separator = ChemicalSeparator.new(report.file.url)
+      separator.separate
+      report.update(log: separator.log.join(';'))
+    end
+    self.success!
+  end
+
 end

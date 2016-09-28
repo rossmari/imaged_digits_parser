@@ -18,5 +18,7 @@ end
 gem 'carrierwave'
 gem 'chunky_png'
 gem 'activeadmin', github: 'activeadmin'
-gem 'devise'
+gem 'devise', '~> 3.5.6'
 gem 'axlsx'
+gem 'zip-zip'
+gem 'rubyXL'

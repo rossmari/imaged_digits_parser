@@ -16,13 +16,15 @@ ActiveAdmin.register ReportsPack do
     column :name
     column :files do |record|
       record.chemical_reports.map do |report|
-        report.file.file.filename
+        link_to report.file.file.filename, report.file.url
       end.join('<br>').html_safe
     end
     column 'Upload all' do
       'TODO : UPLOAD ALL LINK'
     end
-    column :status
+    column :status do |record|
+      "<div class='#{record.status}'>#{record.status.gsub('_', ' ').upcase}</div>".html_safe
+    end
     column :created_at
     actions defaults: true do |pack|
       link_to 'Separate', separate_admin_reports_pack_path(pack)
@@ -30,7 +32,8 @@ ActiveAdmin.register ReportsPack do
   end
 
   member_action :separate, method: :get do
-    redirect_to collection_path, notice: "Start separation of #{resource.id} pack!"
+    resource.separate_reports
+    redirect_to collection_path, notice: "Separation of #{resource.id} files started!"
   end
 
   show do
@@ -38,11 +41,16 @@ ActiveAdmin.register ReportsPack do
       row :name
       row :files do |record|
         record.chemical_reports.map do |report|
-          report.file.file.filename
+          link_to report.file.file.filename, report.file.url
         end.join('<br>').html_safe
       end
       row 'Upload all' do
         'TODO : UPLOAD ALL LINK'
+      end
+      row 'Pages Log' do |record|
+        record.chemical_reports.map do |report|
+          "<b>#{report.file.file.filename}</b><br>#{report.log.split(';').join('<br>')}"
+        end.join('<br>').html_safe
       end
       row :created_at
     end
