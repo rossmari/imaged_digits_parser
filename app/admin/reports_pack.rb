@@ -49,6 +49,7 @@ ActiveAdmin.register ReportsPack do
       end
       row 'Pages Log' do |record|
         record.chemical_reports.map do |report|
+          next unless report.log
           "<b>#{report.file.file.filename}</b><br>#{report.log.split(';').join('<br>')}"
         end.join('<br>').html_safe
       end
